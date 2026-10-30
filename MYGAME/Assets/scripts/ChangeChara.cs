@@ -30,15 +30,12 @@ public class ChangeChara : MonoBehaviour
             }
             else
             {
-                Debug.LogError(
-                    chara.name + " に PlayerMove がありません。"
-                );
+                Debug.LogError(chara.name + " に PlayerMove がありません。");
             }
         }
 
         // 0番目のキャラクターを操作可能にする
-        PlayerMove firstMove =
-            charaList[0].GetComponent<PlayerMove>();
+        PlayerMove firstMove = charaList[0].GetComponent<PlayerMove>();
 
         if (firstMove != null)
         {
@@ -48,9 +45,7 @@ public class ChangeChara : MonoBehaviour
 
     void Update()
     {
-        // 新しい Input System でQキーを検出
-        if (Keyboard.current != null &&
-            Keyboard.current.qKey.wasPressedThisFrame)
+        if (Keyboard.current != null && Keyboard.current.qKey.wasPressedThisFrame)
         {
             ChangeCharacter();
         }
@@ -77,8 +72,7 @@ public class ChangeChara : MonoBehaviour
         nowChara = (nowChara + 1) % charaList.Count;
 
         // 次のキャラクターを操作可能にする
-        PlayerMove nextMove =
-            charaList[nowChara].GetComponent<PlayerMove>();
+        PlayerMove nextMove = charaList[nowChara].GetComponent<PlayerMove>();
 
         if (nextMove != null)
         {
