@@ -10,9 +10,7 @@ public class EnemyDangerRange : MonoBehaviour
     private readonly string[] playerTags =
     {
         "Player1",
-        "Player2",
-        "Player3",
-        "Player4"
+        "Player2"
     };
 
     private readonly List<GameObject> players = new List<GameObject>();

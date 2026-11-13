@@ -1,9 +1,11 @@
+
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class PlayerItemGet : MonoBehaviour
 {
+    public GameObject wall;
     public Slider gauge;
     public int maxCount = 5;
 
@@ -12,6 +14,17 @@ public class PlayerItemGet : MonoBehaviour
 
     void Update()
     {
+        // ゲージがMAXになったら壁を消す
+        if (gauge != null && gauge.value >= gauge.maxValue)
+        {
+            if (wall != null)
+            {
+                Destroy(wall);
+                wall = null;
+                Debug.Log("ゲージMAX！壁を削除！");
+            }
+        }
+
         // アイテムの近くでEキーを押したら
         if (targetItem != null &&
             Keyboard.current != null &&
@@ -19,15 +32,15 @@ public class PlayerItemGet : MonoBehaviour
         {
             getCount++;
 
-            // ゲージを更新
+            // ゲージを1増やす
             if (gauge != null)
             {
-                gauge.value = getCount;
+                gauge.value = Mathf.Min(gauge.value + 1, gauge.maxValue);
             }
 
             Debug.Log("取得回数：" + getCount + "/" + maxCount);
 
-            // 5回押したらアイテムを削除
+            // 5回押したらアイテムのみ削除
             if (getCount >= maxCount)
             {
                 Destroy(targetItem);
@@ -35,13 +48,7 @@ public class PlayerItemGet : MonoBehaviour
                 targetItem = null;
                 getCount = 0;
 
-                // 今後ゲージをリセットするならば
-                //if (gauge != null)
-                //{
-                //    gauge.value = 0;
-                //}
-
-                Debug.Log("アイテムを削除しました！");
+                Debug.Log("アイテムを削除！");
             }
         }
     }

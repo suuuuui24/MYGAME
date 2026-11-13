@@ -8,10 +8,7 @@ public class WallDestoy : MonoBehaviour
     // ƒvƒŒƒCƒ„[‚ªÚG‚µ‚½
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player1") ||
-            other.CompareTag("Player2") ||
-            other.CompareTag("Player3") ||
-            other.CompareTag("Player4"))
+        if (other.CompareTag("Player1") || other.CompareTag("Player2"))
         {
             Destroy(wall, 0.2f);
         }
